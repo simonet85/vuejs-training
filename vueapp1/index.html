@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/cyborg/bootstrap.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.19.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.17.15/lodash.min.js"></script>
+    <title>Ask me anything!</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container text-center">
+        <h1>Ask a question</h1>
+        <h5>Must be a yes / no question</h5>
+        <input type="text" v-model="question" class="form-contyrol" />
+        <br />
+        <br />
+        <h2>{{answer}}</h2>
+        <img v-bind:src="image" alt="" />
+      </div>
+    </div>
+  </body>
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        question: "",
+        answer: "",
+        image: "",
+      },
+      methods: {
+        getAnswer: _.debounce(function () {
+          let vm = this;
+          if (this.question.indexOf("?") === -1) {
+            vm.answer = "Question usually have a question mark";
+            return;
+          }
+          vm.answer = "Thinking ...";
+          axios
+            .get("https://yesno.wtf/api")
+            .then(function (response) {
+              vm.answer = _.capitalize(response.data.answer);
+              vm.image = response.data.image;
+            })
+            .catch(function (err) {
+              vm.answer = "Error" + err;
+            });
+        }, 500),
+      },
+      watch: {
+        question: function (newQuestion) {
+          this.answer = "waiting for you to start typing...";
+          this.getAnswer();
+        },
+      },
+      computed: {},
+    });
+  </script>
+</html>
