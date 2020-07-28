@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue Trainng</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <div
+        style="width: 200px; height: 200px;"
+        v-bind:style="{'background':color}"
+      ></div>
+      <ol>
+        <li v-for="movie in moviesFormat">
+          {{ movie }}
+        </li>
+      </ol>
+      <button @click="addMovie">
+        Add Movie
+      </button>
+      <h1>{{message | uppercase}}</h1>
+    </div>
+  </body>
+
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        color: "blue",
+        message: "Hello world",
+        movies: [
+          { name: "The Matrix", year: 1999 },
+          { name: "The Matrix Reload", year: 2003 },
+          { name: "The Matrix Revolution", year: 2005 },
+        ],
+      },
+      filters: {
+        uppercase: function (value) {
+          if (!value) {
+            return "";
+          }
+          return value.toString().toUpperCase();
+        },
+      },
+      methods: {
+        addMovie: function () {
+          this.movies.push({ name: "Fast and furious", year: 2001 });
+        },
+      },
+      watch: {
+        movies: function (movies) {
+          var newMovie = movies[movies.length - 1];
+          alert(newMovie.name + " from " + newMovie.year + " was just added ");
+        },
+      },
+      computed: {
+        moviesFormat: function () {
+          return this.movies.map((movie) => {
+            return movie.name + " ( " + movie.year + " ) ";
+          });
+        },
+      },
+    });
+  </script>
+</html>

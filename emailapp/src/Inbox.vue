@@ -1,0 +1,28 @@
+<template>
+   <div class="inbox-body">
+        <app-messages :messages="incomingMessages"></app-messages>
+    </div>
+</template>
+<script>
+import Messages from './Messages.vue'
+export default {
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
+  components:{
+      appMessages:Messages
+  },
+  computed: {
+    incomingMessages() {
+      return this.data.messages.filter((message) => {
+        return (
+          message.type == "incoming"  && !message.isDeleted
+        );
+      });
+    },
+  },
+};
+</script>

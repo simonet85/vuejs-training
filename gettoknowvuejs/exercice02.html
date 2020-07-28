@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Veujs Framwork js cdn -->
+    <script
+      crossorigin
+      src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"
+    ></script>
+    <title>Vuejs Practical</title>
+  </head>
+  <body>
+    <div id="app">
+       <input type="text" v-on:keyup="update">
+        Output: {{text}}
+        <br><br>
+        <input type="name" v-on:keyup.ctrl.enter="modify">
+        Output: {{name}}
+        <br><br>
+        <form action="" method="GET" v-on:submit.prevent>
+            <input type="submit" value="Submit" >
+        </form>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+         text:" ",
+         name:" "
+        },
+        methods: {
+          update: function (event) {
+            this.text = event.target.value;
+          },
+          modify: function (event) {
+            this.name = event.target.value;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

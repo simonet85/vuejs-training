@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Veujs Framwork js cdn -->
+    <script
+      crossorigin
+      src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"
+    ></script>
+    <title>Vuejs Practical</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Movies List</h1>
+      <p :title="movieTitle">Title: {{movieTitle}}</p>
+      <p>Released: {{releasedYear}}</p>
+      <p>{{releasedYear > year ? 'New': 'Old'}} </p>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+         movieTitle:'The Matrix',
+         releasedYear: 2017,
+        year:2000
+        },
+        methods:{
+        
+        }
+      });
+    </script>
+  </body>
+</html>

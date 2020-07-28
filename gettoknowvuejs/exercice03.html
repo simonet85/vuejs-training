@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Veujs Framwork js cdn -->
+    <script
+      crossorigin
+      src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"
+    ></script>
+    <title>Vuejs Practical</title>
+  </head>
+  <body>
+    <div id="app">
+        <h1>Exercice I</h1>
+       <input type="text" v-model="password" placeholder="Enter your password"> <br>
+       Your Passowrd: {{password}}
+        <br>
+        <h1>Exercice II</h1>
+        <p v-if="password.length > 8">Awesome! Your password is longer          than    8 characters.</p>
+        <p v-else-if="password.length > 0">Please enter a longer password.</p>
+        <p v-else>Please enter a password.</p>
+        <br>
+         <ol >
+            <li v-for="category in categories">
+                {{category.name}}
+                <ul>
+                    <li v-for="sub in category.sub">{{sub}}</li>
+                </ul>
+            </li>
+        </ol>
+    
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+         password:'',
+         categories:[
+             {name:'Javascrpt', sub:['Vue.js', 'Reactjs', 'Angular7']},
+             {name:'Databases', sub:['MySQL', 'PostgreSQL', 'MariaDB']},
+             {name:'OS', sub:['MacOS', 'Linus', 'Windows']},
+         ],
+        },
+        methods: {
+         
+        },
+      });
+    </script>
+  </body>
+</html>

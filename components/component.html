@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Reusable Component</title>
+  </head>
+  <body>
+    <div id="app" class="container mx-auto py-6">
+      <header>
+        <div>
+          <span id="logo">Liquid Gold Box</span>
+        </div>
+      </header>
+
+      <div class="content">
+        <h1 class="title">Coffee Plans</h1>
+
+        <h2 class="subtitle">
+          We travel the world to source the very best single origin coffee for
+          you
+        </h2>
+        <!-- Nested component -->
+        <plan-picker></plan-picker>
+      </div>
+      <!-- <plan name="The Hacker"></plan> -->
+    </div>
+    <script type="text/x-template" id="plan-picker-template">
+        <!-- Component -->
+      <div class="plans">
+          <plan v-for="plan in plans" :name="plan" :key="plan" @select="selectedPlan"></plan>
+        </div>
+    </script>
+    <script type="text/x-template" id="plan-template">
+      <div @click="select" class="plan" :class="{'active-plan':selected}">
+          <div class="description">
+            <span class="title">
+             {{name}}
+            </span>
+          </div>
+        </div>
+    </script>
+    <script src="app-1.js"></script>
+  </body>
+</html>

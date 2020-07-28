@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue Trainng</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <p v-show="isNinja">Invisible like a ninja!</p>
+      <p v-show="!isNinja">Here I am!</p>
+      <button @click="isNinja =! isNinja">Toggle Ninja Skill</button>
+       -->
+      <!-- <h1>Movies List</h1>
+      <ul>
+        <li v-for="movieTitle in movieTitles">{{movieTitle}}</li>
+      </ul>
+      <h1>Person Properties</h1>
+      <ul>
+        <li v-for="p in person">{{p}}</li>
+      </ul>
+      <h1>People List</h1>
+      <table border="1">
+        <thead>
+          <th>Name</th>
+          <th>Title</th>
+          <th>index</th>
+        </thead>
+        <tbody>
+          <tr v-for="(employee,index) in employees">
+            <td>{{employee.name}}</td>
+            <td>{{employee.title}}</td>
+            <td>{{index}}</td>
+          </tr>
+        </tbody>
+      </table> -->
+
+      <input type="password" v-model="password" placeholder="Your name" />
+      <p v-if="password.length > 8">
+        Awesome! Your password is longer than 8 characters
+      </p>
+      <p v-else-if="password.length < 8">Please enter a longer password</p>
+      <p v-else>Please enter a password</p>
+
+      <ol>
+        <li v-for="category in categories" v-bind:key="category.name">
+          {{category.name}}
+          <ul>
+            <li v-for="sub in category.sub">{{sub}}</li>
+          </ul>
+        </li>
+      </ol>
+      <button @click="changeNameSetter">Click (setter)</button>
+    </div>
+  </body>
+
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        firstName: "Bo",
+        lastName: "Andersen ",
+        movieTitles: [
+          "The Matrix",
+          "The Matrix: Reload",
+          "The matrix Revolutions",
+        ],
+        employees: [
+          { name: "Abby", title: "Accountant" },
+          { name: "Andy", title: "Marketing Manager" },
+          { name: "Brandon", title: "Vue js Expert" },
+          { name: "Lucy", title: "Dev" },
+        ],
+        person: {
+          firstName: "Chris",
+          lastName: "Anderson",
+          age: 27,
+        },
+        password: "",
+        categories: [
+          { name: "Javascript", sub: ["Vue.js", "React", "Angular"] },
+          { name: "Databases", sub: ["Mysql", "PostgreSQL", "MariaDB"] },
+          { name: "Operating System", sub: ["macOS", "Linux", "Windows"] },
+        ],
+      },
+      methods: {
+        changeNameSetter: function () {
+          this.firstName = "MARK";
+          this.lastName = "GONZALES";
+        },
+        changeNameSetter: function () {
+          this.fullName = "MARK GONZALES";
+        },
+      },
+      watch: {},
+      computed: {
+        fullName: {
+          get: function () {
+            alert("Assembling full name...");
+            return this.firstName + " " + this.lastName;
+          },
+          set: function (newValues) {
+            alert("Setting new name :" + newValues);
+            var parts = newValues.split(" ");
+            this.firstName = parts[0];
+            this.lastName = parts[parts.length - 1];
+          },
+        },
+      },
+    });
+  </script>
+</html>

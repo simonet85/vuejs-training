@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Veujs Framwork js cdn -->
+    <script
+      crossorigin
+      src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"
+    ></script>
+    <title>Vuejs Practical</title>
+  </head>
+  <body>
+    <div id="app">
+        <h1>Movies</h1>
+      <ul>
+          <li v-for="moviesTitle in moviesTitles" >{{moviesTitle}}</li>
+      </ul>
+      <h1>Employees</h1>
+      <table border="1">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Title</th>
+                  <th>Company</th>
+                  <th>index</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr v-for="(employee, index ) in employees" :key="employees.id">
+                 <td>{{employee.name}}</td>
+                 <td>{{employee.title}}</td>
+                 <td>{{companyName}}</td>
+                 <td>{{index}}</td>
+              </tr>
+          </tbody>
+      </table>
+      
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+         moviesTitles:['The Matrix','The Matrix Reloaded', 'The Matrix Revolutions'],
+         employees:[
+             {id:1,name:'Abby', title:'Accountant'},
+             {id:2,name:'Andy', title:'Marketing Manager'},
+             {id:3,name:'Brandon', title:'Vue js Expert'},
+         ],
+         companyName: 'VueX Ltd'
+        },
+        methods: {
+         
+        },
+      });
+    </script>
+  </body>
+</html>
