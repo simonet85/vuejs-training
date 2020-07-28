@@ -12,27 +12,23 @@
   </head>
   <body>
     <div id="app">
-      <contact-us />
+      <counter />
     </div>
     <script>
-      //Local component
-      let contactUs = {
+      Vue.component("counter", {
         data: function () {
           return {
-            email: "email@mycompany.com",
+            count: 0,
           };
         },
         template: `
           <div>
-            <h1>Contact us</h1>
-            <p>Contact us at {{email}}</p>
+           <button @click="count++">{{count}}</button>
           </div>
         `,
-      };
-
+      });
       new Vue({
         el: "#app",
-        components: { "contact-us": contactUs },
       });
     </script>
   </body>
